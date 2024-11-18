@@ -1,0 +1,77 @@
+// eslint-disable-next-line no-unused-vars
+import React from 'react';
+import { motion } from 'framer-motion';
+import product1 from "../../assets/hero/image1.jpeg";
+import product2 from "../../assets/hero/image2.jpeg";
+import product3 from "../../assets/hero/image3.jpeg";
+import product4 from "../../assets/hero/image4.jpeg";
+import product5 from "../../assets/hero/image5.jpeg";
+import product6 from "../../assets/hero/image6.jpeg";
+import product7 from "../../assets/hero/image7.jpeg";
+import product8 from "../../assets/hero/image8.jpeg";
+
+const TopProducts = () => {
+  const products = [
+    { id: 1, image: product1, name: "Carter Jean Top and Short", price: "$80" },
+    { id: 2, image: product2, name: " Carter Classic Collection", price: "$120" },
+    { id: 3, image: product3, name: "Carter Luxury Tee and ahorts", price: "$300" },
+    { id: 4, image: product4, name: "Carter Salvage Masterpiece", price: "$70" },
+    { id: 5, image: product5, name: "Carter Summer 24", price: "$70" },
+    { id: 6, image: product6, name: "Carter exclusive", price: "$70" },
+    { id: 7, image: product7, name: "Carter Summer 21", price: "$70" },
+    { id: 8, image: product8, name: "Carter tshirt and shorts", price: "$70" },
+  ];
+
+  return (
+    <div className="p-7 bg-black rounded-lg shadow-md">
+      {/* Section Header */}
+      <h1 className="text-3xl font-extrabold text-white mb-8 text-center">
+        Top Products
+      </h1>
+
+      {/* Product Cards */}
+      <motion.div 
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+        initial="hidden"
+        animate="visible"
+        variants={{
+          hidden: { opacity: 0, scale: 0.8 },
+          visible: { opacity: 1, scale: 1, transition: { duration: 0.5, staggerChildren: 0.2 } }
+        }}
+      >
+        {products.map((product) => (
+          <motion.div
+            key={product.id}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="bg-white rounded-lg p-4 shadow-lg hover:shadow-xl transition-shadow"
+            variants={{
+              hidden: { opacity: 0, y: 50 },
+              visible: { opacity: 1, y: 0 }
+            }}
+          >
+            {/* Product Image */}
+            <img
+              src={product.image}
+              alt={product.name}
+              className="w-full h-40 object-cover rounded-t-lg"
+            />
+
+            {/* Product Details */}
+            <div className="text-center mt-4">
+              <h2 className="text-lg font-bold text-black">{product.name}</h2>
+              <p className="text-blue-500 font-semibold">{product.price}</p>
+            </div>
+
+            {/* Action Button */}
+            <button className="mt-4 w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
+              Add to Cart
+            </button>
+          </motion.div>
+        ))}
+      </motion.div>
+    </div>
+  );
+};
+
+export default TopProducts;
